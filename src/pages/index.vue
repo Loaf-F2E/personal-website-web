@@ -9,7 +9,6 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
-import TodoList2 from '../components/TodoList2.vue'
 import Rate from '../components/Rate.vue'
 
 const score = ref(4)

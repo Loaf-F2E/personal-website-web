@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Loaf-F2E/personal-website#readme",
   "dependencies": {
+    "pinia": "^2.0.14",
     "vue": "^3.2.25",
     "vue-router": "^4.0.15"
   },

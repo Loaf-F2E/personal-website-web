@@ -1,4 +1,5 @@
 import { createApp } from 'vue'
+import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router/index'
 
@@ -7,5 +8,7 @@ import router from './router/index'
 const app = createApp(App)
 
 app.use(router)
+app.use(createPinia())
+
 // 与大多数应用方法不同，mount不返回应用本身，相反，他返回的是根组件实例
 app.mount('#app')
