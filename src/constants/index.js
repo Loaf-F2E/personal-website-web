@@ -4,3 +4,6 @@ export const permissionsMap = {
   user: 'user',
   visitor: 'visitor'
 }
+
+export * from './pinia'
+export * from './paths'

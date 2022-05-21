@@ -1,8 +1,8 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 
-import { setupPinia } from './stores'
-import router from './router/index'
+import { setupPinia } from 'stores'
+import router from 'router/index'
 
 // 该应用实例是用来在应用中注册‘全局’组件的
 // App作为根组件被挂载到应用中，该组件被用作渲染的起点
