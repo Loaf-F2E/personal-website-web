@@ -5,6 +5,9 @@ import { permissionsMap } from '../constants'
 import Index from '../pages/index.vue'
 import Administer from '../pages/administer/index.vue'
 import UserManagement from '../pages/administer/userManagement/index.vue'
+import ArticleManagement from '../pages/administer/articleManagement/index.vue'
+import Login from '../pages/Login/index.vue'
+import { userStore } from '../stores'
 
 // TODO: 路由懒加载
 const routes = [
@@ -23,11 +26,20 @@ const routes = [
       permissions: [permissionsMap.administer]
     },
     children: [
-      {
+      { // 用户管理
         path: 'user',
         component: UserManagement
+      },
+      { // 文章管理
+        path: 'article',
+        component: ArticleManagement
       }
     ]
+  },
+  { // 登录
+    path: '/login',
+    name: 'Login',
+    component: Login
   }
 ]
 
@@ -58,5 +70,9 @@ const isLogin = false
 //   // if (!isLogin && userType === permissionsMap.administer && )
 //   return false
 // })
+
+// const store = userStore()
+
+// console.log('store :>> ', store);
 
 export default router
