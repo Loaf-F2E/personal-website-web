@@ -2,7 +2,7 @@
 
 ## technology stack(技术栈)
 
-vue3.2+vite
+vue3.2+vite+pinia
 
 ## System role(系统角色)
 
