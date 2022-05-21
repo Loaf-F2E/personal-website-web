@@ -36,14 +36,24 @@ const router = createRouter({
   routes
 })
 
+// TODO: 全局变量用pinia存
 const userType = 'administer'
 const isLogin = false
+
+
 // router.beforeEach((to, from) => {
 //   const { meta, name } = to
 //   const { permissions = [] } = meta
 
+//   console.log('permissions?.a :>> ', permissions?.a);
 //   if (permissions.findIndex(x => x === permissionsMap.administer) !== -1) {
+//     if (!isLogin) {
+//       return { path: 'login' }
+//     }
 
+//     if (userType === permissionsMap.administer) {
+//       return true
+//     }
 //   }
 //   // if (!isLogin && userType === permissionsMap.administer && )
 //   return false
