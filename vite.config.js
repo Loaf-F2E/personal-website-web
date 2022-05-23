@@ -16,6 +16,14 @@ export default defineConfig({
       "utils": resolve("src/utils"),
     },
   },
+  css: {  
+    preprocessorOptions: {
+      less: {
+        charset: false,
+        additionalData: '@import "./src/styles/global.less";'
+      }
+    }
+  },
   server: {
     proxy: {
       "/api": {

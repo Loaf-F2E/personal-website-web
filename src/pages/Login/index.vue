@@ -4,12 +4,8 @@
       d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
     </path>
   </svg>
-  <div class="user">
-    <i class="fa fa-user"></i>
-    <div class="head">account login</div>
-  </div>
   <div class="container">
-    <div class="box login">
+    <div class="box login" :style="loginStyle">
       <div class="form-content">
         <div class="avtar">
           <div class="pic"><img src="./img/1.jpg" alt=""></div>
@@ -29,11 +25,11 @@
           </div>
         </form>
         <p class="btn-something">
-          Don't have an account ? <span class="signupbtn">signup</span>
+          Don't have an account ? <span class="signupbtn" @click="handleSigngup">signup</span>
         </p>
       </div>
     </div>
-    <div class="box signup">
+    <div class="box signup" :style="signupStyle">
       <div class="form-content">
         <div class="avtar">
           <div class="pic"><img src="./img/2.jpg" alt=""></div>
@@ -57,7 +53,7 @@
           </div>
         </form>
         <p class="btn-something">
-          Already have an account ? <span class="loginbtn">login</span>
+          Already have an account ? <span class="loginbtn" @click="handleLogin">login</span>
         </p>
       </div>
     </div>
@@ -65,185 +61,24 @@
 </template>
 
 <style scoped>
-@import './font-awesome-4.7.0/css/font-awesome.min.css';
-.container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 20rem;
-  height: 28rem;
-  perspective: 1500px;
-  -webkit-perspective: 1500px;
-  -moz-perspective: 1500px;
-}
-
-.box {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 20rem;
-  height: 28rem;
-  border-radius: 10px;
-  cursor: pointer;
-  backface-visibility: hidden;
-  transition: all 0.5s;
-  user-select: none;
-}
-
-.signup {
-  /* background-color: blue; */
-  transform: rotateY(-108deg);
-}
-
-.container .form-content {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  box-shadow: 0 0 1px #3399ff;
-  border-radius: 30px;
-  background-color: #fff;
-}
-
-.container .form-content .avtar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
-
-.container .form-content .avtar .pic {
-  position: relative;
-  width: 80px;
-  height: 80px;
-  overflow: hidden;
-  border-radius: 50%;
-  border: 1px solid #3399ff;
-}
-
-.container .form-content .avtar .pic img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.container .form-content h1 {
-  font-size: 1.6rem;
-}
-
-.container .form {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-.container .form input {
-  width: 16rem;
-  padding: 0.8rem;
-  padding-left: 3rem;
-  outline: none;
-  border: none;
-  border-radius: 15px;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
-  margin: 5px;
-}
-
-.container .form div {
-  position: relative;
-}
-
-.container .form div .fa {
-  position: absolute;
-  top: 18px;
-  left: 25px;
-}
-
-.container .form .btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  margin-top: 10px;
-}
-
-.container .form .btn button {
-  text-transform: uppercase;
-  padding: 8px;
-  border: none;
-  outline: none;
-  background-color: #0066ff;
-  color: #fff;
-  width: 12rem;
-  border-radius: 30px;
-  cursor: pointer;
-}
-
-.container .btn-something {
-  color: #888;
-  font-size: 14px;
-}
-
-.container .btn-something span {
-  color: #0066ff;
-  cursor: pointer;
-  font-weight: 500;
-}
-
-svg {
-  position: absolute;
-  bottom: 0;
-  z-index: -1;
-}
-
-.user {
-  position: absolute;
-  top: 16rem;
-  left: 5rem;
-}
-
-.user .fa-user {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 5rem;
-  color: #0066ff;
-}
-
-.user .head {
-  font-size: 1.6rem;
-  text-transform: uppercase;
-  user-select: none;
-  text-shadow: 1px 1px 1px rgba(16, 16, 16, 0.1), 1px 2px 1px rgba(16, 16, 16, 0.1), 1px 3px 1px rgba(16, 16, 16, 0.1), 1px 4px 1px rgba(16, 16, 16, 0.1), 1px 5px 1px rgba(16, 16, 16, 0.1), 1px 6px 1px rgba(16, 16, 16, 0.1), 1px 7px 1px rgba(16, 16, 16, 0.1), 1px 8px 1px rgba(16, 16, 16, 0.1);
-}
+  @import './style.less';
 </style>
 
 <script setup>
-  let login = document.querySelector(".login");
-  let signup = document.querySelector(".signup");
+  import { ref, computed } from 'vue'
 
-  let loginbtn = document.querySelector(".loginbtn");
-  let siginupbtn = document.querySelector(".signupbtn");
+  const type = ref('login')
+  const loginStyle = computed(() => {
+    return `transform: ${type.value === 'login' ? 'rotateY(0deg)' : 'rotateY(180deg)' };`
+  })
+  const signupStyle = computed(() => {
+    return `transform: ${type.value === 'signup' ? 'rotateY(0deg)' : 'rotateY(-180deg)' };`
+  })
 
-  let user = document.querySelector(".head");
-  console.log('siginupbtn :>> ', siginupbtn);
-  // siginupbtn.addEventListener("click", () => {
-  //   login.style.transform = "rotateY(180deg)"
-  //   signup.style.transform = "rotateY(0deg)";
-
-  //   user.innerHTML = "create account"
-  // })
-
-  // loginbtn.addEventListener("click", () => {
-  //   login.style.transform = "rotateY(0deg)"
-  //   signup.style.transform = "rotateY(-180deg)";
-
-  //   user.innerHTML = "account login"
-  // })
+  function handleLogin() {
+    type.value = 'login'
+  }
+  function handleSigngup() {
+    type.value = 'signup'
+  }
 </script>
