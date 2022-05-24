@@ -13,11 +13,11 @@
         <h1>Welcome back</h1>
         <form action="#" class="form">
           <div>
-            <i class="fa fa-user-o"></i>
+            <user-outlined class="icon" />
             <input type="text" placeholder="username">
           </div>
           <div>
-            <i class="fa fa-key"></i>
+            <lock-outlined />
             <input type="password" placeholder="password">
           </div>
           <div class="btn">
@@ -66,6 +66,7 @@
 
 <script setup>
   import { ref, computed } from 'vue'
+  import { UserOutlined, LockOutlined } from '@ant-design/icons-vue';
 
   const type = ref('login')
   const loginStyle = computed(() => {
