@@ -11,19 +11,48 @@
           <div class="pic"><img src="./img/1.jpg" alt=""></div>
         </div>
         <h1>Welcome back</h1>
-        <form action="#" class="form">
+        <a-form :model="loginState" class="form" name="login" layout="horizontal" autocomplete="off">
+          <a-form-item
+            name="username"
+            class="form-item"
+            :rules="[{ required: true, message: 'Please input your username!' }]"
+          >
+            <a-input v-model:value="loginState.username"> 
+              <template #prefix>
+                <UserOutlined class="site-form-item-icon" />
+              </template>
+            </a-input>
+          </a-form-item>
+
+          <a-form-item
+            name="password"
+            class="form-item"
+            :rules="[{ required: true, message: 'Please input your password!' }]"
+          >
+            <a-input-password v-model:value="loginState.password">
+              <template #prefix>
+                <LockOutlined class="site-form-item-icon" />
+              </template>
+            </a-input-password>
+          </a-form-item>
+
+          <a-form-item>
+            <a-button :disabled="disabled" type="primary" html-type="submit">Login</a-button>
+          </a-form-item>
+        </a-form>
+        <!-- <form action="#" class="form">
           <div>
-            <user-outlined class="icon" />
+            <UserOutlined class="icon" />
             <input type="text" placeholder="username">
           </div>
           <div>
-            <lock-outlined />
+            <LockOutlined />
             <input type="password" placeholder="password">
           </div>
           <div class="btn">
             <button>login</button>
           </div>
-        </form>
+        </form> -->
         <p class="btn-something">
           Don't have an account ? <span class="signupbtn" @click="handleSigngup">signup</span>
         </p>
@@ -65,8 +94,13 @@
 </style>
 
 <script setup>
-  import { ref, computed } from 'vue'
+  import { ref, computed, reactive } from 'vue'
   import { UserOutlined, LockOutlined } from '@ant-design/icons-vue';
+
+  const loginState = reactive({
+    username: '',
+    password: ''
+  })
 
   const type = ref('login')
   const loginStyle = computed(() => {
