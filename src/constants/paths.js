@@ -4,5 +4,5 @@ export const pathsMap = {
   // 后台管理
   administer: '/administer',
   userManagement: '/administer/user', // 用户管理
-  articleManagement: '/administer/article', // 文章管理
+  articleManagement: '/administer/article' // 文章管理
 }

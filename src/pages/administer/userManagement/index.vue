@@ -2,6 +2,4 @@
   <h1>user management</h1>
 </template>
 
-<script setup>
-
-</script>
+<script setup></script>

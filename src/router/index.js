@@ -13,7 +13,7 @@ import { useUserStore } from 'stores'
 const routes = [
   {
     path: pathsMap.Index,
-    component: Index,
+    component: Index
     // meta: ['administer', 'user', 'visitor']
   },
   {
@@ -23,17 +23,18 @@ const routes = [
       permissions: [permissionsMap.administer]
     },
     children: [
-      { 
+      {
         path: pathsMap.userManagement,
         component: UserManagement
       },
-      { 
+      {
         path: pathsMap.articleManagement,
         component: ArticleManagement
       }
     ]
   },
-  { // 登录
+  {
+    // 登录
     path: pathsMap.login,
     name: 'Login',
     component: Login
@@ -67,7 +68,5 @@ router.beforeEach(async to => {
 
   return true
 })
-
-
 
 export default router

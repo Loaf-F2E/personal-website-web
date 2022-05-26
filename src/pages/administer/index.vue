@@ -1,12 +1,10 @@
 <template>
   <div>
     <h1>basic layout</h1>
-    <router-view></router-view>
+    <RouterView></RouterView>
   </div>
 </template>
 
+<script setup></script>
+
 <style></style>
-
-<script setup>
-
-</script>

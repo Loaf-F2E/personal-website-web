@@ -2,9 +2,15 @@
   <div :style="fontStyle">
     <slot></slot>
     <div class="rate" @mouseout="mouseOut">
-      <span  @mouseover="mouseOver(num)" v-for="num in 5" :key="num">☆</span>
+      <span v-for="num in 5" :key="num" @mouseover="mouseOver(num)">☆</span>
       <span class="hollow" :style="fontWidth">
-        <span @click="onRate(num)" @mouseover="mouseOver(num)" v-for="num in 5" :key="num">★</span>
+        <span
+          v-for="num in 5"
+          :key="num"
+          @click="onRate(num)"
+          @mouseover="mouseOver(num)"
+          >★</span
+        >
       </span>
     </div>
   </div>
@@ -16,20 +22,20 @@ import { defineProps, computed, ref, defineEmits, watchEffect } from 'vue'
 
 const props = defineProps({
   modelValue: Number,
-  theme: { type: String, default: 'orange'}
+  theme: { type: String, default: 'orange' }
 })
 
-console.log('props :>> ', props);
+console.log('props :>> ', props)
 
 // const rate = computed(() => "★★★★★☆☆☆☆☆".slice(5 - props.value, 10 - props.value))
 const themeObj = {
-  'black': '#00', 
-  'white': '#fff', 
-  'red': '#f5222d', 
-  'orange': '#fa541c', 
-  'yellow': '#fadb14', 
-  'green': '#73d13d', 
-  'blue': '#40a9ff',
+  black: '#00',
+  white: '#fff',
+  red: '#f5222d',
+  orange: '#fa541c',
+  yellow: '#fadb14',
+  green: '#73d13d',
+  blue: '#40a9ff'
 }
 const width = ref(props.modelValue)
 const fontStyle = computed(() => {
@@ -39,21 +45,21 @@ const fontWidth = computed(() => `width: ${width.value}em;`)
 // const emits = defineEmits('update-rate')
 const emits = defineEmits(['update:modelValue'])
 
-function mouseOver (i) {
+function mouseOver(i) {
   width.value = i
 }
 
-function mouseOut () {
+function mouseOut() {
   width.value = props.modelValue
 }
 
-function onRate (num) {
+function onRate(num) {
   // emits('update-rate', num)
   emits('update:modelValue', num)
 }
 
 // 此处记得 props改变了 子组件是用了ref来接受了props里的值，如果不用下面方法，会导致子组件并没有更新
-watchEffect(()=> {
+watchEffect(() => {
   width.value = props.modelValue
 })
 </script>
