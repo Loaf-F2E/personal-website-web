@@ -13,60 +13,48 @@
           <div class="pic"><img src="./img/1.jpg" alt="" /></div>
         </div>
         <h1>Welcome back</h1>
-        <AForm
+        <Form
           :model="loginState"
           class="form"
           name="login"
           layout="horizontal"
           autocomplete="off"
+          @finish="onFinish"
         >
-          <AFormItem
+          <FormItem
             name="username"
             class="form-item"
             :rules="[
               { required: true, message: 'Please input your username!' }
             ]"
           >
-            <AInput v-model:value="loginState.username">
+            <Input v-model:value="loginState.username">
               <template #prefix>
                 <UserOutlined class="site-form-item-icon" />
               </template>
-            </AInput>
-          </AFormItem>
+            </Input>
+          </FormItem>
 
-          <AFormItem
+          <FormItem
             name="password"
             class="form-item"
             :rules="[
               { required: true, message: 'Please input your password!' }
             ]"
           >
-            <AInputPassword v-model:value="loginState.password">
+            <InputPassword v-model:value="loginState.password">
               <template #prefix>
                 <LockOutlined class="site-form-item-icon" />
               </template>
-            </AInputPassword>
-          </AFormItem>
+            </InputPassword>
+          </FormItem>
 
-          <AFormTem>
-            <AButton :disabled="disabled" type="primary" html-type="submit">
+          <FormItem>
+            <Button :disabled="disabled" type="primary" html-type="submit">
               Login
-            </AButton>
-          </AFormTem>
-        </AForm>
-        <!-- <form action="#" class="form">
-          <div>
-            <UserOutlined class="icon" />
-            <input type="text" placeholder="username">
-          </div>
-          <div>
-            <LockOutlined />
-            <input type="password" placeholder="password">
-          </div>
-          <div class="btn">
-            <button>login</button>
-          </div>
-        </form> -->
+            </Button>
+          </FormItem>
+        </Form>
         <p class="btn-something">
           Don't have an account ?
           <span class="signupbtn" @click="handleSigngup">signup</span>
@@ -79,23 +67,48 @@
           <div class="pic"><img src="./img/2.jpg" alt="" /></div>
         </div>
         <h1>Let's get started</h1>
-        <form action="#" class="form">
-          <div>
-            <i class="fa fa-user-o"></i>
-            <input type="text" placeholder="username" />
-          </div>
-          <div>
-            <i class="fa fa-envelope-o"></i>
-            <input type="email" placeholder="email" />
-          </div>
-          <div>
-            <i class="fa fa-key"></i>
-            <input type="password" placeholder="password" />
-          </div>
-          <div class="btn">
-            <button>signup</button>
-          </div>
-        </form>
+        <Form
+          :model="registerState"
+          class="form"
+          name="register"
+          layout="horizontal"
+          autocomplete="off"
+          @finish="onFinish"
+        >
+          <FormItem
+            name="username"
+            class="form-item"
+            :rules="[
+              { required: true, message: 'Please input your username!' }
+            ]"
+          >
+            <Input v-model:value="registerState.username">
+              <template #prefix>
+                <UserOutlined class="site-form-item-icon" />
+              </template>
+            </Input>
+          </FormItem>
+
+          <FormItem
+            name="password"
+            class="form-item"
+            :rules="[
+              { required: true, message: 'Please input your password!' }
+            ]"
+          >
+            <InputPassword v-model:value="registerState.password">
+              <template #prefix>
+                <LockOutlined class="site-form-item-icon" />
+              </template>
+            </InputPassword>
+          </FormItem>
+
+          <FormItem>
+            <Button :disabled="disabled" type="primary" html-type="submit">
+              signup
+            </Button>
+          </FormItem>
+        </Form>
         <p class="btn-something">
           Already have an account ?
           <span class="loginbtn" @click="handleLogin">login</span>
@@ -107,14 +120,24 @@
 
 <script setup>
 import { ref, computed, reactive } from 'vue'
+import { Form, Input, Button } from 'ant-design-vue'
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue'
+
+const FormItem = Form.Item
+const InputPassword = Input.Password
 
 const loginState = reactive({
   username: '',
   password: ''
 })
 
+const registerState = reactive({
+  username: '',
+  password: ''
+})
+
 const type = ref('login')
+const disabled = ref(false)
 const loginStyle = computed(() => {
   return `transform: ${
     type.value === 'login' ? 'rotateY(0deg)' : 'rotateY(180deg)'
@@ -125,6 +148,11 @@ const signupStyle = computed(() => {
     type.value === 'signup' ? 'rotateY(0deg)' : 'rotateY(-180deg)'
   };`
 })
+
+function onFinish(value) {
+  console.log('type.value :>> ', type.value)
+  console.log('value :>> ', value)
+}
 
 function handleLogin() {
   type.value = 'login'

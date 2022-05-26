@@ -1,3 +1,4 @@
+import 'ant-design-vue/dist/antd.css'
 import './styles/index.css'
 import { createApp } from 'vue'
 import App from './App.vue'
