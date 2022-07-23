@@ -2,6 +2,7 @@ import 'ant-design-vue/dist/antd.css'
 import './styles/index.css'
 import { createApp } from 'vue'
 import App from './App.vue'
+import request, { get, post } from './utils/request'
 
 import { setupPinia } from 'stores'
 import router from 'router/index'
@@ -10,6 +11,9 @@ import router from 'router/index'
 // App作为根组件被挂载到应用中，该组件被用作渲染的起点
 const app = createApp(App)
 
+app.config.globalProperties.request = request
+app.config.globalProperties.get = get
+app.config.globalProperties.post = post
 setupPinia(app)
 app.use(router)
 

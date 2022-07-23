@@ -119,8 +119,9 @@
 </template>
 
 <script setup>
-import { ref, computed, reactive } from 'vue'
+import { ref, computed, reactive, onMounted, getCurrentInstance } from 'vue'
 import { Form, Input, Button } from 'ant-design-vue'
+import axios from 'axios'
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue'
 
 const FormItem = Form.Item
@@ -160,6 +161,17 @@ function handleLogin() {
 function handleSigngup() {
   type.value = 'signup'
 }
+const internalInstance = getCurrentInstance()
+console.log(
+  'this.request :>> ',
+  internalInstance.appContext.config.globalProperties
+)
+
+onMounted(() => {
+  axios.get('/api/get').then(res => {
+    console.log(res)
+  })
+})
 </script>
 
 <style scoped>
