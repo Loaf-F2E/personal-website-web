@@ -5,7 +5,8 @@ import { permissionsMap, pathsMap } from 'constants'
 import Index from 'pages/index.vue'
 import Administer from 'pages/administer/index.vue'
 import UserManagement from 'pages/administer/userManagement/index.vue'
-import ArticleManagement from 'pages/administer/articleManagement/index.vue'
+import Article from 'pages/administer/blogManagement/article/index.vue'
+import Tag from 'pages/administer/blogManagement/tag/index.vue'
 import Login from 'pages/Login/index.vue'
 import { useUserStore } from 'stores'
 
@@ -28,8 +29,12 @@ const routes = [
         component: UserManagement
       },
       {
-        path: pathsMap.articleManagement,
-        component: ArticleManagement
+        path: pathsMap.article,
+        component: Article
+      },
+      {
+        path: pathsMap.tagManagement,
+        component: Tag
       }
     ]
   },
@@ -48,23 +53,23 @@ const router = createRouter({
 
 // global router guard
 router.beforeEach(async to => {
-  const { meta, path } = to
-  const { permissions = [] } = meta
-  const store = await useUserStore()
-  const { isLogin, userType } = store
+  // const { meta, path } = to
+  // const { permissions = [] } = meta
+  // const store = await useUserStore()
+  // const { isLogin, userType } = store
 
-  if (permissions.findIndex(x => x === permissionsMap.administer) !== -1) {
-    if (!isLogin && path !== pathsMap.login) {
-      return { path: pathsMap.login }
-    }
+  // if (permissions.findIndex(x => x === permissionsMap.administer) !== -1) {
+  //   if (!isLogin && path !== pathsMap.login) {
+  //     return { path: pathsMap.login }
+  //   }
 
-    if (userType === permissionsMap.administer) {
-      return true
-    }
+  //   if (userType === permissionsMap.administer) {
+  //     return true
+  //   }
 
-    // 已经登录但是不是管理员角色
-    return false
-  }
+  //   // 已经登录但是不是管理员角色
+  //   return false
+  // }
 
   return true
 })

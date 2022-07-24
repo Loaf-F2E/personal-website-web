@@ -69,14 +69,14 @@ module.exports = defineConfig({
     'vue/max-attributes-per-line': ['off'],
     'vue/multi-word-component-names': 0,
     // 强制使用驼峰命名
-    'vue/component-name-in-template-casing': [
-      'error',
-      'PascalCase',
-      {
-        registeredComponentsOnly: false,
-        ignores: []
-      }
-    ],
+    // 'vue/component-name-in-template-casing': [
+    //   'error',
+    //   'PascalCase',
+    //   {
+    //     registeredComponentsOnly: false,
+    //     ignores: []
+    //   }
+    // ],
     'prettier/prettier': ['error', prettierrc]
   }
 })

@@ -1,6 +1,7 @@
 import 'ant-design-vue/dist/antd.css'
 import './styles/index.css'
 import { createApp } from 'vue'
+import vcolorpicker from 'vcolorpicker'
 import App from './App.vue'
 import request, { get, post } from './utils/request'
 
@@ -16,6 +17,7 @@ app.config.globalProperties.get = get
 app.config.globalProperties.post = post
 setupPinia(app)
 app.use(router)
+app.use(vcolorpicker)
 
 // 与大多数应用方法不同，mount不返回应用本身，相反，他返回的是根组件实例
 app.mount('#app')
