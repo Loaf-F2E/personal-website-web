@@ -1,4 +1,4 @@
-import 'ant-design-vue/dist/antd.css'
+import 'ant-design-vue/dist/antd.less'
 import './styles/index.css'
 import { createApp } from 'vue'
 import vcolorpicker from 'vcolorpicker'

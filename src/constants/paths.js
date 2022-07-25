@@ -6,7 +6,8 @@ export const pathsMap = {
   userManagement: '/administer/user', // 用户管理
 
   article: '/administer/blog/article', // 文章管理
-  tagManagement: '/administer/blog/tag' // 标签管理
+  tagManagement: '/administer/blog/tag', // 标签管理
+  editor: '/editor' // 写作页面
 }
 
 export const administerRouterList = [

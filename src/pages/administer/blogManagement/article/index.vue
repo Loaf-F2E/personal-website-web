@@ -1,5 +1,17 @@
 <template>
-  <!-- <h1>文章管理</h1> -->
+  <h1>文章管理</h1>
+  <div class="header">
+    <router-link
+      v-slot="{ navigate }"
+      target="_blank"
+      :to="{
+        name: 'editor',
+        query: { isEdit: false }
+      }"
+    >
+      <a target="_blank" @click="navigate">添加</a></router-link
+    >
+  </div>
   <a-table :columns="columns" :data-source="data" />
 </template>
 
@@ -18,3 +30,6 @@ const columns = [
   }
 ]
 </script>
+<style scoped lang="less">
+@import './index.less';
+</style>

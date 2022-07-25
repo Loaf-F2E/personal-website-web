@@ -6,6 +6,7 @@ import Index from 'pages/index.vue'
 import Administer from 'pages/administer/index.vue'
 import UserManagement from 'pages/administer/userManagement/index.vue'
 import Article from 'pages/administer/blogManagement/article/index.vue'
+import Editor from 'pages/administer/blogManagement/editor/index.vue'
 import Tag from 'pages/administer/blogManagement/tag/index.vue'
 import Login from 'pages/Login/index.vue'
 import { useUserStore } from 'stores'
@@ -37,6 +38,11 @@ const routes = [
         component: Tag
       }
     ]
+  },
+  {
+    name: 'editor',
+    path: pathsMap.editor,
+    component: Editor
   },
   {
     // 登录

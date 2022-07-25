@@ -24,7 +24,12 @@ export default ({ command }) => {
       preprocessorOptions: {
         less: {
           charset: false,
-          additionalData: '@import "./src/styles/global.less";'
+          additionalData: '@import "./src/styles/global.less";',
+          modifyVars: {
+            // 此处也可设置直角、边框色、字体大小等
+            'primary-color': '#94B1FF'
+          },
+          javascriptEnabled: true
         }
       }
     },
