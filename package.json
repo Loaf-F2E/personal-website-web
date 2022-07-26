@@ -30,6 +30,7 @@
   },
   "homepage": "https://github.com/Loaf-F2E/personal-website#readme",
   "dependencies": {
+    "@kangc/v-md-editor": "^2.3.15",
     "ant-design-vue": "^3.2.10",
     "axios": "^0.27.2",
     "less": "^4.1.3",

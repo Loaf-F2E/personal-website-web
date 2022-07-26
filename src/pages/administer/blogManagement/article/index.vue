@@ -9,7 +9,7 @@
         query: { isEdit: false }
       }"
     >
-      <a target="_blank" @click="navigate">添加</a></router-link
+      <a class="link" target="_blank" @click="navigate">写文章</a></router-link
     >
   </div>
   <a-table :columns="columns" :data-source="data" />

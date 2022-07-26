@@ -50,7 +50,10 @@ export default ({ command }) => {
         watchFiles: true,
         mockPath: './mock'
       })
-    ]
+    ],
+    optimizeDeps: {
+      include: ['@kangc/v-md-editor/lib/theme/vuepress.js']
+    }
   })
 }
 
