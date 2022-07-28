@@ -10,6 +10,9 @@ import VMdEditor from '@kangc/v-md-editor/lib/codemirror-editor'
 import '@kangc/v-md-editor/lib/style/codemirror-editor.css'
 import githubTheme from '@kangc/v-md-editor/lib/theme/github.js'
 import '@kangc/v-md-editor/lib/theme/style/github.css'
+import VMdPreview from '@kangc/v-md-editor/lib/preview'
+import '@kangc/v-md-editor/lib/style/preview.css'
+import '@kangc/v-md-editor/lib/theme/style/github.css'
 
 // highlightjs
 import hljs from 'highlight.js'
@@ -37,7 +40,12 @@ import 'codemirror/addon/scroll/simplescrollbars.css'
 import 'codemirror/lib/codemirror.css'
 
 VMdEditor.Codemirror = Codemirror
+// Markdown编辑组件
 VMdEditor.use(githubTheme, {
+  Hljs: hljs
+})
+// Markdown预览组件
+VMdPreview.use(githubTheme, {
   Hljs: hljs
 })
 
@@ -51,6 +59,7 @@ app.config.globalProperties.post = post
 setupPinia(app)
 app.use(router)
 app.use(VMdEditor)
+app.use(VMdPreview)
 
 // 与大多数应用方法不同，mount不返回应用本身，相反，他返回的是根组件实例
 app.mount('#app')

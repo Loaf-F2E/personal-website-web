@@ -21,7 +21,7 @@
         <span>
           <a>修改</a>
           <a-divider type="vertical" />
-          <a>删除</a>
+          <a-button danger type="link">删除</a-button>
         </span>
       </template>
     </template>
