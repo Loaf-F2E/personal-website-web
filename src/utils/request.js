@@ -43,9 +43,10 @@ const service = axios.create({
 export default function request(config = {}) {
   return new Promise((resolve, reject) => {
     service(config).then(response => {
-      const { success, data, message } = response.data || {}
+      console.log('response :>> ', response)
+      const { code, data, message } = response.data || {}
 
-      if (success) {
+      if (code === 0) {
         resolve(data)
       } else {
         // throw new Error(message || 'request error')

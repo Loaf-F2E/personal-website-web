@@ -34,13 +34,13 @@ export default ({ command }) => {
       }
     },
     server: {
-      // proxy: {
-      //   '/api': {
-      //     target: 'http://localhost:8002',
-      //     changeOrigin: true,
-      //     rewrite: path => path.replace(/^\/api/, '')
-      //   }
-      // }
+      proxy: {
+        '/api': {
+          target: 'http://localhost:8082/',
+          changeOrigin: true,
+          rewrite: path => path.replace(/^\/api/, '')
+        }
+      }
     },
     plugins: [
       vue(),

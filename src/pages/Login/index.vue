@@ -121,15 +121,15 @@
 <script setup>
 import { ref, computed, reactive, onMounted, getCurrentInstance } from 'vue'
 import { Form, Input, Button } from 'ant-design-vue'
-import axios from 'axios'
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue'
 
 const FormItem = Form.Item
 const InputPassword = Input.Password
+const { proxy } = getCurrentInstance()
 
 const loginState = reactive({
-  username: '',
-  password: ''
+  username: 'admin',
+  password: '123456'
 })
 
 const registerState = reactive({
@@ -150,9 +150,15 @@ const signupStyle = computed(() => {
   };`
 })
 
-function onFinish(value) {
-  console.log('type.value :>> ', type.value)
-  console.log('value :>> ', value)
+async function onFinish(value) {
+  if (type.value === 'login') {
+    const data = await proxy.post(proxy.apis.login, {
+      account: value.username,
+      password: value.password
+    })
+
+    console.log('res :>> ', res)
+  }
 }
 
 function handleLogin() {
@@ -161,17 +167,8 @@ function handleLogin() {
 function handleSigngup() {
   type.value = 'signup'
 }
-const internalInstance = getCurrentInstance()
-console.log(
-  'this.request :>> ',
-  internalInstance.appContext.config.globalProperties
-)
 
-onMounted(() => {
-  axios.get('/api/get').then(res => {
-    console.log(res)
-  })
-})
+onMounted(() => {})
 </script>
 
 <style scoped>

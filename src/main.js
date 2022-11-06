@@ -3,6 +3,7 @@ import './styles/index.css'
 import { createApp } from 'vue'
 import App from './App.vue'
 import request, { get, post } from './utils/request'
+import * as apis from './apis/index'
 
 import { setupPinia } from 'stores'
 import router from 'router/index'
@@ -56,6 +57,7 @@ const app = createApp(App)
 app.config.globalProperties.request = request
 app.config.globalProperties.get = get
 app.config.globalProperties.post = post
+app.config.globalProperties.apis = apis
 setupPinia(app)
 app.use(router)
 app.use(VMdEditor)
