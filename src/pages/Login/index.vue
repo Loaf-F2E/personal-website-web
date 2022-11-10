@@ -152,12 +152,14 @@ const signupStyle = computed(() => {
 
 async function onFinish(value) {
   if (type.value === 'login') {
-    const data = await proxy.post(proxy.apis.login, {
+    const { data, code } = await proxy.post(proxy.apis.login, {
       account: value.username,
       password: value.password
     })
-
-    console.log('res :>> ', res)
+    console.log('data :>> ', data)
+    if (code === 0) {
+      localStorage.setItem('token', data.access_token)
+    }
   }
 }
 

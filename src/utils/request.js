@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { message } from 'ant-design-vue'
 import { isPlainObject, param } from './param'
+import HTTP_STATUS from '../constants/httpStatus'
 
 const service = axios.create({
   basieUrl: '/api',
@@ -11,11 +12,11 @@ const service = axios.create({
 })
 
 // 请求拦截
-// service.interceptors.request.use(config => {
-//   config.headers.token = 'token'
+service.interceptors.request.use(config => {
+  config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`
 
-//   return config
-// })
+  return config
+})
 
 // 相应拦截
 // service.interceptors.response.use(
@@ -43,15 +44,21 @@ const service = axios.create({
 export default function request(config = {}) {
   return new Promise((resolve, reject) => {
     service(config).then(response => {
-      console.log('response :>> ', response)
-      const { code, data, message } = response.data || {}
+      console.log('response: ', response)
+      const { data, status } = response || {}
 
-      if (code === 0) {
-        resolve(data)
-      } else {
-        // throw new Error(message || 'request error')
-        reject(message)
+      if (status === HTTP_STATUS.AUTHENTICATE) {
+        return message.error('暂无权限！')
       }
+
+      resolve(data)
+
+      // if (code === 0) {
+      //   resolve(data)
+      // } else {
+      //   // throw new Error(message || 'request error')
+      //   reject(message)
+      // }
     })
   }).catch(err => {
     console.log('request err :>> ', err)

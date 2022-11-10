@@ -1,6 +1,10 @@
 {
   "name": "personal-website-web",
-  "version": "1.0.0",
+  "version": "0.0.1",
+  "description": "",
+  "author": "https://github.com/orgs/Loaf-F2E/teams/dev/members",
+  "private": true,
+  "license": "MIT",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -23,8 +27,6 @@
     "url": "git+https://github.com/Loaf-F2E/personal-website.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/Loaf-F2E/personal-website/issues"
   },
